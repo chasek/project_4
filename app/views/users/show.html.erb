@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= gravatar_for @user, :size => 150 %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <b>Username:</b>
+  <%= @user.username %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<% if signed_in? and current_user.admin? %>
+<p>
+  <b>Active:</b>
+  <%= @user.active? ? "Yes" : "No" %>
+</p>
+
+<p>
+  <b>Admin:</b>
+  <%= @user.admin? ? "Yes" : "No" %>
+</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if @user.active? %>
+<%= link_to 'Deactivate Account', @user, :confirm => "Are you sure?", :method => :delete %> |
+<% else %>
+<%= link_to 'Reactivate Account', @user, :confirm => "Are you sure?", :method => :delete %> |
+<% end %>
+<%= link_to 'Back', users_path %>

@@ -1,0 +1,38 @@
+table{
+  border: 2px solid black;
+  border-collapse: collapse;
+  background-color: #FFFF99;
+}
+
+th, td{
+  border: 1px solid black;
+}
+
+
+
+#header{
+  background-color: grey;
+  height: 55px;
+}
+
+#header_links{
+  text-align: right;
+}
+
+#box{
+  background-color: #CCFFFF;
+  border: 2px solid black;
+}
+
+#box_title{
+  border-bottom: 1px solid black;
+}
+
+#author_primary{
+
+}
+
+#author_secondary{
+  border-right: 1px solid black;
+  width: 20px;
+}

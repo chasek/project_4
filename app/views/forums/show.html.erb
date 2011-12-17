@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @topics.each do |topic| %>
+  <% user = User.where(:id => topic.user_id)[0] %>
+  <tr>
+    <td><%= link_to topic.title, forum_topic_path(@forum,topic) %></td>
+    <td><%= user.username %></td>
+    <td>
+      <% if current_user?(user) %>
+      <%= link_to 'Edit', edit_forum_topic_path(@forum,topic) %>
+      <% end %>
+    </td>
+    <td>
+      <% if current_user?(user) %>
+      <%= link_to 'Destroy', forum_topic_path(@forum,topic), :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
+  </tr>
+<% end %>
+</table>
+
+
+<%= link_to 'Edit', edit_forum_path(@forum) %> |
+<%= link_to 'Back', forums_path %> |
+<%= link_to 'New Topic', new_forum_topic_path(@forum) %>

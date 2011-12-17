@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr>
+    <th>Author</th>
+    <th></th>
+    <th>Topic</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <% user = User.where({:id => post.user_id})[0] %>
+  <tr>
+    <td><%= gravatar_for user, :size => 30 %><%= user.username %></td>
+    <td><%= post.body %></td>
+    <td><%= post.topic_id %></td>
+    <td>
+      <% if current_user?(user) %>
+      <%= link_to 'Edit', edit_forum_topic_post_path(@forum,@topic,post) %>
+      <% end %>
+    </td>
+    <td>
+      <% if current_user?(user) %>
+      <%= link_to 'Destroy', forum_topic_post_path(@forum,@topic,post), :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New Post', new_forum_topic_post_path(@forum,@topic) %> |
+<%= link_to 'Back', @forum %>

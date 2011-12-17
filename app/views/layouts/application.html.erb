@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ForumsFromRails</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<%= link_to 'Home', root_path %> |
+<% if !signed_in? %>
+  <%= link_to "Sign in", signin_path %>
+<% else %>
+  <%= link_to "Sign out", signout_path %> |
+  <% if current_user.admin? %>
+    <%= link_to "User List", users_path %> |
+  <% end %>
+  <%= link_to "Profile", current_user %>
+<% end %>
+
+<h1><%= @title %></h1>
+
+<br />
+
+<%= yield %>
+
+</body>
+</html>
